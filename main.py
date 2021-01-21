@@ -7,6 +7,9 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 
+# Read instruction only one time then reuse it everywhere
+instructions_list = 
+
 @app.route('/api/v1/query', methods=['POST'])
 def process_query():
     raw_query_obj = request.json
@@ -18,3 +21,4 @@ def process_query():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
