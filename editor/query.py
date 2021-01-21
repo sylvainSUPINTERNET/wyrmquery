@@ -14,6 +14,11 @@ def process(raw_query):
 Tokenize the raw query to create instructions
 """
 def tokenizer(raw_query):
-    print(raw_query)
+
+    # Split string at \n and also space (inline code)
+    tokenized_query = [i.strip() for i in raw_query["query"].split(r"\n") if i != ""]
+
+
+    print(tokenized_query)
 
     return "instruction"

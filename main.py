@@ -11,7 +11,7 @@ cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 def process_query():
     raw_query_obj = request.json
 
-    q_response = query.process(raw_query_obj)
+    q_response = query.process(raw_query_obj["query"])
 
     return jsonify({"data": q_response}), 200
 
