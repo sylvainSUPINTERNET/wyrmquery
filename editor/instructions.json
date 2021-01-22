@@ -1,4 +1,20 @@
 {
-  "CREATE_DATABASE": "CREATE DATABASE ?",
-  "CREATE_TABLE" : "CREATE TABLE ?"
+  "CREATE_DATABASE": {
+    "token": "CREATE DATABASE",
+    "parameters_descriptor": [
+      {
+       "position": "1",
+        "action": "CREATE_DB"
+      }
+    ]
+  },
+  "CREATE_TABLE" : {
+    "token":  "CREATE TABLE",
+    "parameters_descriptor": {
+      "position": "1",
+      "action": "CREATE_TABLE"
+    }
+  }
+
 }
+
