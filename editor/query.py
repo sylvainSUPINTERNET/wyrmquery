@@ -1,3 +1,5 @@
+from editor.actions import actions
+
 """
 Manage query for wyrmdb editor
 """
@@ -19,10 +21,13 @@ def tokenizer(raw_query, instructions):
 
     for ins in instructions:
         for token in tokenized_query:
-            if token in instructions[ins]["token"]:
-                parameters = [i.strip() for i in token.replace(instructions[ins], "").splitlines() if i != ""]
-                print(parameters)
-
-    print(tokenized_query)
+            if token.find(instructions[ins]["token"]) == 0:
+                parameters = [i.strip() for i in token.replace(instructions[ins]["token"], "").splitlines() if i != ""]
+                apply_action(action_name=instructions[ins]["parameters_descriptor"][0]["action"], args=parameters)
 
     return "instruction"
+
+
+def apply_action(action_name, args):
+    print(actions(name=action_name, params=args))
+
