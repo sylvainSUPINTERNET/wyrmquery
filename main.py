@@ -1,3 +1,4 @@
+from bson import json_util
 from dotenv import load_dotenv
 load_dotenv()
 # OR, the same with increased verbosity
@@ -26,8 +27,8 @@ def process_query():
     raw_query_obj = request.json
 
     q_response = query.process(raw_query_obj["query"], instructions=instructions)
-
-    return jsonify({"data": q_response}), 200
+    response_formatted = json.dumps(q_response, default=json_util.default)
+    return jsonify({"data": json.loads(response_formatted)}), 200
 
 
 if __name__ == "__main__":

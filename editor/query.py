@@ -9,8 +9,7 @@ Manage query for wyrmdb editor
 Return query as instruction to create the GUI elements
 """
 def process(raw_query, instructions):
-    instructions = tokenizer(raw_query=raw_query, instructions=instructions)
-    return "ok"
+    return tokenizer(raw_query=raw_query, instructions=instructions)
 
 """
 Tokenize the raw query to create instructions
@@ -23,14 +22,12 @@ def tokenizer(raw_query, instructions):
         for token in tokenized_query:
             if token.find(instructions[ins]["token"]) == 0:
                 parameters = [i.strip() for i in token.replace(instructions[ins]["token"], "").splitlines() if i != ""]
-                apply_action(
+                return apply_action(
                     action_name=instructions[ins]["parameters_descriptor"][0]["action"],
                     args=parameters,
                     description_positions=instructions[ins]["parameters_descriptor"][0]["positions"])
 
-    return "instruction"
-
 
 def apply_action(action_name, args, description_positions):
-    actions(name=action_name, params=args, description_positions=description_positions)
+    return actions(name=action_name, params=args, description_positions=description_positions)
 
