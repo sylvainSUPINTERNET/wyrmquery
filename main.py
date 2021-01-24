@@ -1,8 +1,14 @@
+from dotenv import load_dotenv
+load_dotenv()
+# OR, the same with increased verbosity
+load_dotenv(verbose=True)
+
 import json
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from editor import query
+
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
